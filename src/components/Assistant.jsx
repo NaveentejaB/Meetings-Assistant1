@@ -70,7 +70,9 @@ const Assistant = () => {
   };
 
   // Function to process question with AI
-  const genAI = new GoogleGenerativeAI(import.meta.env.VITE_REACT_APP_GOOGLE_API_KEY);
+  const google_api_key = import.meta.env.VITE_GOOGLE_AI;
+  console.log('google_api_key: ',google_api_key);
+  const genAI = new GoogleGenerativeAI(google_api_key);
 
   const processQuestionWithAI = async (question, source) => {
   setIsProcessing(true);
@@ -123,7 +125,9 @@ const Assistant = () => {
 
   const setupDeepgramTranscription = async (audioStream, setTranscriptFunc,source) => {
     try {
-      const deepgram = createClient(import.meta.env.VITE_REACT_APP_DEEPGRAM_API_KEY);
+      const deep_gram_key = import.meta.env.VITE_DEEPGRAM_API
+      console.log('deep_gram_key: ',deep_gram_key);
+      const deepgram = createClient(deep_gram_key);
 
       const connection = await deepgram.listen.live({
         model: "nova-2",
